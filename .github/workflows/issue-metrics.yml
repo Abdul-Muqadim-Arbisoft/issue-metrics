@@ -1,0 +1,29 @@
+name: Monthly issue metrics
+on:
+    workflow_dispatch:
+
+permissions:
+    contents: read
+
+jobs:
+    build:
+        name: issue metrics
+        runs-on: ubuntu-latest
+        permissions:
+            issues: write
+            pull-requests: read
+
+        steps:
+            - name: Run issue-metrics tool
+              uses: mlabeeb03/issue-metrics@main
+              env:
+                  GH_TOKEN: ${{ secrets.GH_TOKEN }}
+                  SEARCH_QUERY: 'repo:overhangio/tutor is:issue created:2025-01-01..2025-05-31 -reason:"bug"'
+
+            - name: Create issue
+              uses: peter-evans/create-issue-from-file@v4
+              with:
+                  title: Monthly issue metrics report
+                  token: ${{ secrets.GITHUB_TOKEN }}
+                  content-filepath: ./issue_metrics.md
+                  assignees: <YOUR_GITHUB_HANDLE_HERE>
