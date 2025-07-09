@@ -1,6 +1,8 @@
 name: Monthly issue metrics
 on:
     workflow_dispatch:
+    push:
+        branches: [main]
 
 permissions:
     contents: read
@@ -18,7 +20,8 @@ jobs:
               uses: mlabeeb03/issue-metrics@main
               env:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
-                  SEARCH_QUERY: 'repo:overhangio/tutor is:issue created:2025-01-01..2025-05-31 -reason:"bug"'
+                  NON_MENTIONING_LINKS: true
+                  SEARCH_QUERY: 'repo:overhangio/tutor-jupyter is:issue created:2025-01-01..2025-07-31 -reason:"not planned" label:"bug"'
 
             - name: Create issue
               uses: peter-evans/create-issue-from-file@v4
