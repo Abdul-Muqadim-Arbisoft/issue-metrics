@@ -24,10 +24,16 @@ jobs:
                   LABELS_TO_MEASURE: 'Backlog,Blocked,Done,orange'
                   SEARCH_QUERY: 'repo:edly-io/edly-team is:issue created:2025-06-01..2025-07-31 -reason:"not planned"'
 
-            - name: Create issue
-              uses: peter-evans/create-issue-from-file@v4
+            # - name: Create issue
+            #   uses: peter-evans/create-issue-from-file@v4
+            #   with:
+            #       title: Monthly issue metrics report
+            #       token: ${{ secrets.GITHUB_TOKEN }}
+            #       content-filepath: ./issue_metrics.md
+            #       assignees: <YOUR_GITHUB_HANDLE_HERE>
+            - name: Get project status history
+              uses: alex-page/github-project-field-history@v1
               with:
-                  title: Monthly issue metrics report
-                  token: ${{ secrets.GITHUB_TOKEN }}
-                  content-filepath: ./issue_metrics.md
-                  assignees: <YOUR_GITHUB_HANDLE_HERE>
+                  github-token: ${{ secrets.GITHUB_TOKEN }}
+                  project-url: https://github.com/orgs/edly-io/projects/8   # 🔁 change this to your actual project URL
+                  field-name: Status
