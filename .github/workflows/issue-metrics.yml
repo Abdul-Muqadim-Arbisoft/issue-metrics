@@ -22,7 +22,7 @@ jobs:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
                   NON_MENTIONING_LINKS: true
                   LABELS_TO_MEASURE: 'Status: Open,Status: Closed,Status: Pending'
-                  SEARCH_QUERY: 'repo:overhangio/tutor is:issue created:2025-01-01..2025-07-31 -reason:"not planned"'
+                  SEARCH_QUERY: 'repo:edly-io/edly-team is:issue created:2025-06-01..2025-07-31 -reason:"not planned"'
 
             - name: Create issue
               uses: peter-evans/create-issue-from-file@v4
