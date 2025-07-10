@@ -17,7 +17,7 @@ jobs:
 
         steps:
             - name: Run issue-metrics tool
-              uses: mlabeeb03/issue-metrics@main
+              uses: Abdul-Muqadim-Arbisoft/issue-metrics@main
               env:
                   GH_TOKEN: ${{ secrets.GH_TOKEN }}
                   NON_MENTIONING_LINKS: true
